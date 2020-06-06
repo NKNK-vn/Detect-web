@@ -1,0 +1,103 @@
+﻿                              HOW TO BUILD A MAZE
+ 
+          David Matuszek
+          Department of Computer Science
+          8 Ayres Hall
+          University of Tennessee
+          Knoxville TN 37916
+ 
+ 
+          Taken from Byte's December 1981, page 190 (I only typed a
+          part of the article).
+ 
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ 
+               Mazes are fun to solve. With a little imagination,
+          mazes can be incorporated into many different computer
+          games. If you know how, it's a simple matter to use the
+          computer to generate random mazes.
+               A traditional maze has one starting point and one
+          finishing point. In addition, all locations inside the maze
+          are reachable from the start, and there is one and only path
+          from start to finish. While it is easy to place doorways and
+          barriers randomly inside a maze, it is more difficult to
+          satisfy the two later constraints. This article describes a
+          fairly simple method that efficiently produces a random
+          traditional maze.
+ 
+          THE GENERAL APPROACH
+               We begin with a rectangular array. Each cell of the
+          array is initially completely "walled in," isolated from
+          its neighbors (see figure 1).
+ 
+          ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»    Secondly, we
+          º  ÚÂÂÂÂÂ¿  FIGURE 1                  º  judiciously erase
+          º  ÃÅÅÅÅÅ´                            º  walls inside the
+          º  ÃÅÅÅÅÅ´  The initial array from    º  array until we
+          º  ÃÅÅÅÅÅ´  which the maze will be    º  arrive at a
+          º  ÃÅÅÅÅÅ´  constructed.              º  structure with the
+          º  ÃÅÅÅÅÅ´                            º  following property:
+          º  ÀÁÁÁÁÁÙ                            º  for ANY two cells
+          ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼  of the array, there
+          is only one path between them. Thus, any cell can be reached
+          from any cell, but only by a single unique (see figure 2).
+          Computer science jargon refers to such a structure as a
+          SPANNING TREE, and it is the creation of this spanning tree
+          that is the tricky pary of building a maze.
+ 
+          ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»   Finally, the
+          º  ÚÄÂÄÂÄ¿  FIGURE 2                  º of the maze is
+          º  Ã¿³³Ã¿³                            º broken in to
+          º  ³ ³ÀÙ³³  One possible spanning     º provide a start and
+          º  ÃÄ ÚÄ ³  tree for the array in     º a finish position.
+          º  ³ÚÄ´ Ú´  figure 1.                 º Since there is a
+          º  ³ÀÄÅÄ³³                            º unique path between
+          º  ÀÄÄÁÄÄÙ                            º any two cells of the
+          ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ maze, there will be
+          a unique path from start to finish. Hence, start and finish
+          can be chosen in any convenient manner, say, random
+          locations on the opposite sides of the maze (see figure 3).
+ 
+          ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» BUILDING THE
+          º  ÚÄÂÄÂÄ¿  FIGURE 3                  º SPANNING TREE
+          º  À¿³³Ã¿³                            º  starting with a
+          º    ³ÀÙ³³  The spanning tree from    º fully "walled-up"
+          º  ÃÄ ÚÄ ³  figure 2 with possible    º array (see figue 1),
+          º  ³Ú ³ Ú´  entry and exit points     º pick a single cell
+          º  ³ÀÄÅÄ³³  added.                    º in the array and
+          º  ÀÄÄÁÄÄ                             º call this cell the
+          ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ spanning tree. Then
+          add cells one at a time to the spanning tree until it fills
+          the entire array.
+            At any point during this procedure, there will be three
+          types of cells in the array:
+ 
+          o those that are already in the spanning tree.
+          o those that are not in the spanning tree, but are
+            immediatly adjacent (horizontally or vertically) to some
+            cell in the spanning tree (we call there cells FRONTIER
+            CELLS)
+          o all other cells
+ 
+ 
+            The algorithm follows:
+ 
+          1. Choose any cell of the array and call it the spanning
+          tree. The four cells immediatly adjacent to it (fewer if it
+          is on an edge or in a corner) thus become frontier cells.
+          2. Randomly choose a frontier cell and connect it to ONE
+          cell of the current spanning tree by erasing ONE barrier. If
+          it is adjacent to more than one cell of the spanning tree
+          (and it could be adjacent to as many as four!), randomly
+          choose one of them to connect it to, and erase the
+          appropriate barrier.
+          3. Check the cells adjacent to the cell just added to the
+          spanning tree. Any such cells that are not part of the
+          spanning tree and have not previously been marked as
+          frontier cells are now marked as frontier cells.
+          4. If any frontier cells remain, back to step 2.
+          5. Choose start and finish points.
+ 
+ 
+          The article goes on, but I won't. This part is enought to
+          show how to build a maze.

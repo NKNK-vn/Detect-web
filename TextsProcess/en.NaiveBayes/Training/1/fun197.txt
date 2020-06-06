@@ -1,0 +1,24 @@
+﻿ ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍËÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+ º  Linear Measure                     º    Liquid Measure                    º
+ º  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                     º    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                    º
+ º   12 inches   = 1 foot              º       4 gills   = 1 pint             º
+ º    3 feet     = 1 yard              º       2 pints   = 1 quart            º
+ º  5.5 yards    = 1 rod               º       4 quarts  = 1 gallon           º
+ º   40 rods     = 1 furlong           º    31.5 gallons = 1 barrel           º
+ º    8 furlongs = 1 stat.mile         º       2 barrels = 1 hogshead         º
+ ÌÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÎÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¹
+ º  Mariner's Measure                  º    Dry Measure                       º
+ º  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                  º    ÄÄÄÄÄÄÄÄÄÄÄ                       º
+ º     6 feet       = 1 fathom         º    2 pints  = 1 quart                º
+ º  1000 fathoms    = 1 naut.mile      º    8 quarts = 1 peck                 º
+ º     3 naut.miles = 1 league         º    4 pecks  = 1 bushel               º
+ ÌÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÎÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¹
+ º  Square Measure                     º    Apothecaries Measure              º
+ º  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                     º    ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ              º
+ º    144 sq. inches = 1 sq. ft.       º    60 minims        = 1 fluid dram   º
+ º      9 sq. feet   = 1 sq. yd.       º     8 fluid drams   = 1 fluid ounce  º
+ º  30.25 sq. yards  = 1 sq. rd.       º    16 fluid ounces  = 1 pint         º
+ º    160 sq. rods   = 1 acre          º     2 pints         = 1 quart        º
+ º    640 acres      = 1 sq. mile      º     4 quarts        = 1 gallon       º
+ ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÊÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
