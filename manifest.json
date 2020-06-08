@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "My chrome extension",
+    "name": "Porn Detector Extension",
     "version": "1.0.0",
     "icons": {
         "16": "./images/16x16.png",
@@ -21,7 +21,7 @@
     },
     "browser_action": {
         "default_popup": "popup/index.html",
-        "default_title": "React Chrome Extension Starter"
+        "default_title": "Porn detector panel"
     },
     "web_accessible_resources": ["assets/*"],
     "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-9tnh58qJPMg4FvVwOEgZjpI3aWlYBcLnwRpV1es8/GQ='; object-src 'self'"

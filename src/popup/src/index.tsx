@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RecoilRoot } from 'recoil';
 import 'tachyons';
 import 'tachyons-animate';
 import 'animate.css';
@@ -15,9 +14,7 @@ import App from './pages/app/App';
 ReactDOM.render(
 	<React.StrictMode>
 		<I18nextProvider i18n={i18n}>
-			<RecoilRoot>
-				<App />
-			</RecoilRoot>
+			<App />
 		</I18nextProvider>
 	</React.StrictMode>,
 	document.getElementById('root'),

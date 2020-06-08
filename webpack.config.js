@@ -5,7 +5,13 @@ const { join } = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 let prodPlugins = [];
 if (process.env.NODE_ENV === 'production') {
-    prodPlugins.push(new optimize.AggressiveMergingPlugin(), new optimize.OccurrenceOrderPlugin());
+    prodPlugins.push(new optimize.AggressiveMergingPlugin(), new optimize.OccurrenceOrderPlugin(), new CopyWebpackPlugin({
+        patterns: [{ from: './manifest.json' }, { from: './src/assets' }, { from: './src/popup/build', to: "./popup" }],
+    }));
+} else {
+    prodPlugins.push(new CopyWebpackPlugin({
+        patterns: [{ from: './manifest.json' }, { from: './src/assets' }],
+    }));
 }
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -38,10 +44,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css',
-        }),
-        new CopyWebpackPlugin({
-            patterns: [{ from: './manifest.json' }, { from: './src/assets' }],
-        }),
+        })
     ],
     resolve: {
         extensions: ['.ts', '.js', '.scss'],

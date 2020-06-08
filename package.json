@@ -1,5 +1,5 @@
 {
-    "name": "Detect-web",
+    "name": "porn-detector",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,7 +12,8 @@
         "build": "npm-run-all --parallel build:*",
         "watch:contentscript-background": "NODE_ENV=development webpack --config webpack.config.js -w",
         "watch:popup": "npm run watch:build --prefix src/popup",
-        "watch": "npm-run-all --parallel watch:*"
+        "watch": "npm-run-all --parallel watch:*",
+        "zip": "bestzip extension.zip dist/*"
     },
     "repository": {
         "type": "git",
@@ -29,6 +30,7 @@
         "@types/chrome": "0.0.114",
         "@types/node": "^14.0.11",
         "awesome-typescript-loader": "^5.2.1",
+        "bestzip": "^2.1.5",
         "copy-webpack-plugin": "^6.0.2",
         "cra-build-watch": "^3.2.0",
         "css-loader": "^3.5.3",
