@@ -2,14 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Switch from '@material-ui/core/Switch';
 import './App.scss';
 import { useTypedTranslation } from '../../languages/typedTranslation';
-import { DARK_COLOR, PRIMARY_COLOR, ALLOW_ENABLED } from '../../config';
-import {
-	getCurrentWebSafeValue,
-	getCurrentWebUrl,
-	getCurrentWebHideValue,
-	setWebHideValue,
-	setDisabledValue,
-} from '../../manager';
+import { DARK_COLOR, PRIMARY_COLOR, ALLOW_ENABLED, APP_VERSION } from '../../config';
+import { getCurrentWebSafeValue, getCurrentWebUrl, getCurrentWebHideValue, setWebHideValue, setDisabledValue } from '../../manager';
 import CircularProgress from '@material-ui/core/CircularProgress';
 function App() {
 	const [hide, setHide] = useState(true);
@@ -59,10 +53,16 @@ function App() {
 		getState();
 	}, []);
 	return (
-		<div className="h-100 w-100 bg-white flex flex-column">
+		<div className="h-100 w-100 bg-white flex flex-column justify-center items-center">
+			<div className="w-100 h-25 pa2 flex items-center justify-center">
+				<img className="ma0 h-100" src={require('../../assets/images/48x48.png')}></img>
+				<h3 className="ma0 w-100 fw7 pl1 o-70">PORN DETECTOR</h3>
+				<p className="ma0 fw1 pl1 o-70">{APP_VERSION}</p>
+			</div>
 			<div
 				id="status-container"
-				className={`overflow-hidden w-100 h-75 ${bgColor} br4 br--bottom shadow-4 flex justify-center items-center flex-column relative`}>
+				style={{ width: '95%' }}
+				className={`overflow-hidden h-50 ${bgColor} br3 shadow-4 flex justify-center items-center flex-column relative`}>
 				{ALLOW_ENABLED && (
 					<div
 						className={`absolute right-0 top-0 w-30 bg-white flex shadow-4 flex justify-center items-center z-1 grow ${

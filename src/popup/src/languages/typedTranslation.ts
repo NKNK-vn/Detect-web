@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import dict from './vi';
+import dict from './en';
 type Dictionary = string | DictionaryObject;
 type DictionaryObject = { [K: string]: Dictionary };
 

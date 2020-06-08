@@ -1,11 +1,12 @@
 const PopUp = {
-	safeWebsite: 'This site is safe',
-	unSafeWebsite: 'This site is unsafe',
-	loadingSafe: 'This is processing...',
-	dangerousWebsite: 'This site is high risk content',
-	hideImage: 'Hide images on unsafe websites',
-	enabled: 'Enabled',
-	disabled: 'Disabled',
+	appName: 'PORN DETECTOR',
+	safeWebsite: 'Web an toàn',
+	unSafeWebsite: 'Web không an toàn',
+	loadingSafe: 'Đang xử lý...',
+	dangerousWebsite: 'Web nguy hiểm',
+	hideImage: 'Ẩn toàn bộ hình trong web không an toàn',
+	enabled: 'Bật',
+	disabled: 'Tắt',
 };
 
 export default {
