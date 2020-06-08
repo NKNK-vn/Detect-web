@@ -24,5 +24,5 @@
         "default_title": "Porn detector panel"
     },
     "web_accessible_resources": ["assets/*"],
-    "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-9tnh58qJPMg4FvVwOEgZjpI3aWlYBcLnwRpV1es8/GQ='; object-src 'self'"
+    "content_security_policy": "script-src 'self' 'sha256-V/iEy/JDsKiWnn/Sob0oSf4ctpuI27zHmLnLyOfgQ58'"
 }

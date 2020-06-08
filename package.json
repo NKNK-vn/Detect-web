@@ -9,7 +9,7 @@
         "prewatch": "npm run clean",
         "build:contentscript-background": "NODE_ENV=production webpack --config webpack.config.js",
         "build:popup": "npm run build --prefix src/popup",
-        "build": "npm-run-all --parallel build:*",
+        "build": "npm-run-all build:popup build:contentscript-background",
         "watch:contentscript-background": "NODE_ENV=development webpack --config webpack.config.js -w",
         "watch:popup": "npm run watch:build --prefix src/popup",
         "watch": "npm-run-all --parallel watch:*",

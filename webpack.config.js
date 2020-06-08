@@ -6,7 +6,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 let prodPlugins = [];
 if (process.env.NODE_ENV === 'production') {
     prodPlugins.push(new optimize.AggressiveMergingPlugin(), new optimize.OccurrenceOrderPlugin(), new CopyWebpackPlugin({
-        patterns: [{ from: './manifest.json' }, { from: './src/assets' }, { from: './src/popup/build', to: "./popup" }],
+        patterns: [{ from: './manifest.json' }, { from: './src/assets' },
+        {
+            from: './src/popup/build', to: "./popup", globOptions: {
+                ignore: ['**/static/**'],
+            },
+        },
+        { from: './src/popup/build/static', to: "./static" }],
     }));
 } else {
     prodPlugins.push(new CopyWebpackPlugin({

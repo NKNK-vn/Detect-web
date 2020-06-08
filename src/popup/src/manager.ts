@@ -12,7 +12,6 @@ interface IProcessWebsite {
 
 // Init core for calling background and content script
 const core = chrome;
-declare const window: any;
 
 /**
  * Get current web safe value
@@ -116,22 +115,5 @@ export function getCurrentWebUrl(): Promise<string> {
 		} catch (e) {
 			rs('');
 		}
-	});
-}
-
-export function setBackground(selector: string, color: string) {
-	window.VANTA.NET({
-		el: selector,
-		mouseControls: true,
-		touchControls: false,
-		minHeight: 250.0,
-		minWidth: 300.0,
-		scale: 1,
-		scaleMobile: 1,
-		color: 0xffffff,
-		backgroundColor: color,
-		maxDistance: 13.0,
-		points: 4.0,
-		spacing: 20.0,
 	});
 }

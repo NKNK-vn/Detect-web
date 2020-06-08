@@ -4,7 +4,6 @@ import './App.scss';
 import { useTypedTranslation } from '../../languages/typedTranslation';
 import { DARK_COLOR, PRIMARY_COLOR, ALLOW_ENABLED } from '../../config';
 import {
-	setBackground,
 	getCurrentWebSafeValue,
 	getCurrentWebUrl,
 	getCurrentWebHideValue,
