@@ -1,0 +1,70 @@
+{
+	"extends": "tslint:recommended",
+	"rules": {
+		"indent": false,
+		"ordered-imports": false,
+		"await-promise": true,
+		"ban-comma-operator": true,
+		"curly": true,
+		"no-var-requires": false,
+		"object-literal-shorthand": false,
+		"deprecation": true,
+		"arrow-return-shorthand": [true, "multiline"],
+		"interface-name": false,
+		"interface-over-type-literal": false,
+		"object-literal-key-quotes": false,
+		"trailing-comma": false,
+		"no-console": false,
+		"prefer-switch": [
+			true,
+			{
+				"min-cases": 3
+			}
+		],
+		"no-string-literal": false,
+		"prefer-const": false,
+		"only-arrow-functions": false,
+		"space-before-function-paren": false,
+		"align": true,
+		"no-consecutive-blank-lines": [true, 5],
+		"eofline": true,
+		"no-trailing-whitespace": false,
+		"variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+		"jsdoc-format": [true, "check-multiline-start"],
+		"arrow-parens": false,
+		"max-classes-per-file": false,
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"public-static-field",
+					"public-static-method",
+					"protected-static-field",
+					"protected-static-method",
+					"private-static-field",
+					"private-static-method",
+					"public-instance-field",
+					"protected-instance-field",
+					"private-instance-field",
+					"public-constructor",
+					"protected-constructor",
+					"private-constructor",
+					"public-instance-method",
+					"protected-instance-method",
+					"private-instance-method"
+				]
+			}
+		],
+		"object-literal-sort-keys": false,
+		"max-line-length": false,
+		"adjacent-overload-signatures": false,
+		"unified-signatures": false,
+		"no-shadowed-variable": false,
+		"no-arg": true,
+		"no-construct": true,
+		"prefer-for-of": false,
+		"triple-equals": [true, "allow-null-check"],
+		"no-reference": false,
+		"no-empty": [true, "allow-empty-catch"]
+	}
+}

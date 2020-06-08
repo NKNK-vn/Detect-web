@@ -1,0 +1,76 @@
+/*
+
+  FLEXBOX JUSTIFY SELF
+
+  Media Query Extensions:
+   -ns = not-small
+   -m  = medium
+   -l  = large
+
+*/
+.just-self-start {
+	justify-self: start;
+}
+.just-self-end {
+	justify-self: flex-end;
+}
+.just-self-center {
+	justify-self: center;
+}
+.just-self-baseline {
+	justify-self: baseline;
+}
+.just-self-stretch {
+	justify-self: stretch;
+}
+@include breakpoint(ns) {
+	.just-self-start-ns {
+		justify-self: flex-start;
+	}
+	.just-self-end-ns {
+		justify-self: flex-end;
+	}
+	.just-self-center-ns {
+		justify-self: center;
+	}
+	.just-self-baseline-ns {
+		justify-self: baseline;
+	}
+	.just-self-stretch-ns {
+		justify-self: stretch;
+	}
+}
+@include breakpoint(m) {
+	.just-self-start-m {
+		justify-self: flex-start;
+	}
+	.just-self-end-m {
+		justify-self: flex-end;
+	}
+	.just-self-center-m {
+		justify-self: center;
+	}
+	.just-self-baseline-m {
+		justify-self: baseline;
+	}
+	.just-self-stretch-m {
+		justify-self: stretch;
+	}
+}
+@include breakpoint(l) {
+	.just-self-start-l {
+		justify-self: flex-start;
+	}
+	.just-self-end-l {
+		justify-self: flex-end;
+	}
+	.just-self-center-l {
+		justify-self: center;
+	}
+	.just-self-baseline-l {
+		justify-self: baseline;
+	}
+	.just-self-stretch-l {
+		justify-self: stretch;
+	}
+}

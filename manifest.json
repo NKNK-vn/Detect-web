@@ -2,6 +2,11 @@
     "manifest_version": 2,
     "name": "My chrome extension",
     "version": "1.0.0",
+    "icons": {
+        "16": "./images/16x16.png",
+        "48": "./images/48x48.png",
+        "128": "./images/128x128.png"
+    },
     "permissions": ["tabs", "activeTab", "storage"],
     "content_scripts": [
         {
@@ -19,5 +24,5 @@
         "default_title": "React Chrome Extension Starter"
     },
     "web_accessible_resources": ["assets/*"],
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+    "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-9tnh58qJPMg4FvVwOEgZjpI3aWlYBcLnwRpV1es8/GQ='; object-src 'self'"
 }

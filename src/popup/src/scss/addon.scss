@@ -1,0 +1,9 @@
+.no-btn:focus {
+	outline: none;
+}
+.scroll-hidden::-webkit-scrollbar {
+	display: none;
+}
+.scroll-hidden {
+	-ms-overflow-style: none;
+}

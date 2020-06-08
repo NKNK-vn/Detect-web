@@ -1,0 +1,29 @@
+/*
+    BLUR
+*/
+
+.blur-1 {
+	filter: blur(4px);
+	-webkit-filter: blur(4px);
+	transform: scale(1.03);
+}
+.blur-2 {
+	filter: blur(6px);
+	-webkit-filter: blur(6px);
+	transform: scale(1.03);
+}
+.blur-3 {
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+	transform: scale(1.03);
+}
+.blur-4 {
+	filter: blur(12px);
+	-webkit-filter: blur(12px);
+	transform: scale(1.03);
+}
+.blur-5 {
+	filter: blur(16px);
+	-webkit-filter: blur(16px);
+	transform: scale(1.03);
+}

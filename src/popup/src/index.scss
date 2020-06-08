@@ -1,0 +1,54 @@
+$prime-color: #267ce2;
+$orange-color: #eca15b;
+$green-color: #0ba0b5;
+$dark-grey: #121212;
+$dark-grey-3: #323232;
+$dark-grey-5: #525252;
+$dark-grey-7: #727272;
+@mixin breakpoint($point) {
+	@if $point == ns {
+		@media screen and (min-width: 30em,) {
+			@content;
+		}
+	} @else if $point == m {
+		@media screen and (min-width: 30em,) and (max-width: 60em,) {
+			@content;
+		}
+	} @else if $point == l {
+		@media screen and (min-width: 60em,) {
+			@content;
+		}
+	}
+}
+
+@import './scss/minw.scss';
+@import './scss/blur.scss';
+@import './scss/background.scss';
+@import './scss/override.scss';
+@import './scss/fill.scss';
+@import './scss/toastify.scss';
+@import './scss/nzindex.scss';
+@import './scss/addon.scss';
+@import './scss/color.scss';
+@import './scss/maxw.scss';
+@import './scss/justifyself.scss';
+
+#root {
+	width: 300px;
+	height: 200px;
+}
+
+body {
+	margin: 0;
+	font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.shadow {
+	box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,23 @@
+@include breakpoint(ns) {
+	.Toastify__toast-container {
+		min-width: 320px;
+		max-width: 70%;
+		width: max-content;
+	}
+	.Toastify__toast {
+		min-height: unset;
+	}
+}
+.Toastify__toast-body {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.Toastify__toast--info {
+	background: $prime-color;
+}
+.Toastify__toast--warning {
+	background: $orange-color;
+}
+.Toastify__toast--success {
+	background: $green-color;
+}

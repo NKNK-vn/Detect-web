@@ -1,0 +1,162 @@
+/*
+
+   MAX WIDTHS PIXEL
+
+   Base:
+     mwx = max-width
+
+   Modifiers
+     1 = 1st step in width scale
+     2 = 2nd step in width scale
+     3 = 3rd step in width scale
+     4 = 4th step in width scale
+     5 = 5th step in width scale
+     6 = 6st step in width scale
+     7 = 7nd step in width scale
+     8 = 8rd step in width scale
+     9 = 9th step in width scale
+
+     -none  = string value none
+
+
+   Media Query Extensions:
+     -ns = not-small
+     -m  = medium
+     -l  = large
+
+*/
+
+/* Max Width Scale */
+
+.mwx1 {
+	max-width: 50px;
+}
+.mwx2 {
+	max-width: 100px;
+}
+.mwx3 {
+	max-width: 150px;
+}
+.mwx4 {
+	max-width: 200px;
+}
+.mwx5 {
+	max-width: 250px;
+}
+.mwx6 {
+	max-width: 300px;
+}
+.mwx7 {
+	max-width: 350px;
+}
+.mwx8 {
+	max-width: 400px;
+}
+.mwx9 {
+	max-width: 500px;
+}
+
+/* Max Width String Properties */
+
+.mwx-none {
+	max-width: none;
+}
+
+@include breakpoint(ns) {
+	.mwx1-ns {
+		max-width: 50px;
+	}
+	.mwx2-ns {
+		max-width: 100px;
+	}
+	.mwx3-ns {
+		max-width: 150px;
+	}
+	.mwx4-ns {
+		max-width: 200px;
+	}
+	.mwx5-ns {
+		max-width: 250px;
+	}
+	.mwx6-ns {
+		max-width: 300px;
+	}
+	.mwx7-ns {
+		max-width: 350px;
+	}
+	.mwx8-ns {
+		max-width: 400px;
+	}
+	.mwx9-ns {
+		max-width: 500px;
+	}
+	.mwx-none-ns {
+		max-width: none;
+	}
+}
+
+@include breakpoint(m) {
+	.mwx1-m {
+		max-width: 50px;
+	}
+	.mwx2-m {
+		max-width: 100px;
+	}
+	.mwx3-m {
+		max-width: 150px;
+	}
+	.mwx4-m {
+		max-width: 200px;
+	}
+	.mwx5-m {
+		max-width: 250px;
+	}
+	.mwx6-m {
+		max-width: 300px;
+	}
+	.mwx7-m {
+		max-width: 350px;
+	}
+	.mwx8-m {
+		max-width: 400px;
+	}
+	.mwx9-m {
+		max-width: 500px;
+	}
+	.mwx-none-m {
+		max-width: none;
+	}
+}
+
+@include breakpoint(l) {
+	.mwx1-l {
+		max-width: 50px;
+	}
+	.mwx2-l {
+		max-width: 100px;
+	}
+	.mwx3-l {
+		max-width: 150px;
+	}
+	.mwx4-l {
+		max-width: 200px;
+	}
+	.mwx5-l {
+		max-width: 250px;
+	}
+	.mwx6-l {
+		max-width: 300px;
+	}
+	.mwx7-l {
+		max-width: 350px;
+	}
+	.mwx8-l {
+		max-width: 400px;
+	}
+	.mwx9-l {
+		max-width: 500px;
+	}
+	.mwx-none-l {
+		max-width: none;
+	}
+}

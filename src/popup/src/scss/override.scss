@@ -1,0 +1,40 @@
+.bg-blue {
+	background-color: $prime-color;
+}
+.blue {
+	color: $prime-color;
+}
+.br-pill {
+	border-radius: 9999px !important;
+}
+@include breakpoint(ns) {
+	.br-pill-ns {
+		border-radius: 9999px !important;
+	}
+}
+
+@include breakpoint(m) {
+	.br-pill-m {
+		border-radius: 9999px !important;
+	}
+}
+
+@include breakpoint(l) {
+	.br-pill-l {
+		border-radius: 9999px !important;
+	}
+}
+
+.MuiCircularProgress-colorPrimary {
+	color: $prime-color !important;
+}
+
+.MuiCircularProgress-colorSecondary {
+	color: white !important;
+}
+.Mui-checked {
+	color: $prime-color !important;
+}
+.MuiSwitch-track {
+	background-color: $dark-grey-7 !important;
+}

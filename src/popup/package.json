@@ -1,40 +1,59 @@
 {
-    "name": "popup",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.3.2",
-        "@testing-library/user-event": "^7.1.2",
-        "@types/jest": "^24.0.0",
-        "@types/node": "^12.0.0",
-        "@types/react": "^16.9.0",
-        "@types/react-dom": "^16.9.0",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-scripts": "3.4.1",
-        "typescript": "~3.7.2"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "watch:build": "cra-build-watch -v --build-path ../../dist/popup"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+	"name": "popup",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@material-ui/core": "^4.10.1",
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.3.2",
+		"@testing-library/user-event": "^7.1.2",
+		"@types/jest": "^24.0.0",
+		"@types/node": "^12.0.0",
+		"@types/react": "^16.9.0",
+		"@types/react-dom": "^16.9.0",
+		"@types/recoil": "^0.0.0",
+		"@types/request": "^2.48.5",
+		"animate.css": "^4.1.0",
+		"i18next": "^19.4.5",
+		"i18next-browser-languagedetector": "^4.2.0",
+		"node-sass": "^4.14.1",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-i18next": "^11.5.0",
+		"react-scripts": "3.4.1",
+		"react-toastify": "^6.0.5",
+		"recoil": "^0.0.8",
+		"request": "^2.88.2",
+		"tachyons": "4.12.0",
+		"tachyons-animate": "^7.0.1-1",
+		"tslint": "^6.1.2",
+		"typescript": "~3.7.2"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"watch:build": "cra-build-watch -v --build-path ../../dist/popup"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"awesome-typescript-loader": "^5.2.1",
+		"react-docgen-typescript-loader": "^3.7.2",
+		"react-docgen-typescript-webpack-plugin": "^1.1.0"
+	}
 }
