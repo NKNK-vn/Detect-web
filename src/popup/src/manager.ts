@@ -4,6 +4,11 @@ import { DARK_COLOR } from './config';
  * Init interface an types
  */
 type webStates = 'safe' | 'unsafe' | 'critical' | 'processing';
+interface IProcessWebsite {
+	state: webStates;
+	off: boolean;
+	sample?: string;
+}
 
 // Init core for calling background and content script
 const core = chrome;
@@ -12,7 +17,7 @@ declare const window: any;
 /**
  * Get current web safe value
  */
-export function getCurrentWebSafeValue(): Promise<webStates | false> {
+export function getCurrentWebSafeValue(): Promise<IProcessWebsite | false> {
 	return new Promise((rs, rj) => {
 		try {
 			core.runtime.sendMessage(
@@ -21,7 +26,30 @@ export function getCurrentWebSafeValue(): Promise<webStates | false> {
 					from: 'popup',
 					action: 'get_safe_value',
 				},
-				(res: webStates) => {
+				(res: IProcessWebsite) => {
+					rs(res);
+				},
+			);
+		} catch (e) {
+			rs(false);
+		}
+	});
+}
+
+/**
+ * Change on off for specific page
+ */
+export function setDisabledValue(val: boolean): Promise<boolean> {
+	return new Promise((rs, rj) => {
+		try {
+			core.runtime.sendMessage(
+				core.runtime.id,
+				{
+					from: 'popup',
+					action: 'disabled_page',
+					data: val,
+				},
+				(res: boolean) => {
 					rs(res);
 				},
 			);

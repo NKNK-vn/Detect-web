@@ -4,6 +4,8 @@ const PopUp = {
 	loadingSafe: 'This is processing...',
 	dangerousWebsite: 'This site is high risk content',
 	hideImage: 'Hide images on unsafe websites',
+	enabled: 'Enabled',
+	disabled: 'Disabled',
 };
 
 export default {
