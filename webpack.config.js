@@ -12,6 +12,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
         contentscript: join(__dirname, 'src/contentscript/contentscript.ts'),
+        contentstyle: join(__dirname, 'src/contentscript/contentscript.scss'),
         background: join(__dirname, 'src/background/background.ts'),
     },
     output: {
@@ -26,7 +27,7 @@ module.exports = {
                 use: 'awesome-typescript-loader?{configFileName: "tsconfig.json"}',
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
         ],
@@ -43,6 +44,6 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js', '.scss'],
     },
 };
