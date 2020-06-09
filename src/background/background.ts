@@ -1,6 +1,6 @@
 import './prototype';
 // BEGIN OF DECLARE VARIABLE
-type webStates = 'safe' | 'unsafe' | 'critical' | 'processing';
+type webStates = 'safe' | 'unsafe' | 'critical' | 'processing' | 'unsupported';
 interface ICachedWebsite {
     state?: webStates;
     off?: boolean;
@@ -65,7 +65,11 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             console.log('<i> Detect new domain:', domain);
             changeIconBaseOnState('processing');
             webCaches[domain] = { sample: tab.url, off: false };
-            webCaches[domain].state = (await callApiVerifyURL(tab.url)) || 'processing';
+            if (tab.url.isURL()) {
+                webCaches[domain].state = (await callApiVerifyURL(tab.url)) || 'processing';
+            } else {
+                webCaches[domain].state = 'unsupported';
+            }
             console.log('<i> Server response value:', webCaches[domain].state);
         }
         changeIconBaseOnState(webCaches[domain]?.state || 'processing');

@@ -3,7 +3,7 @@ import { DARK_COLOR } from './config';
 /**
  * Init interface an types
  */
-type webStates = 'safe' | 'unsafe' | 'critical' | 'processing';
+type webStates = 'safe' | 'unsafe' | 'critical' | 'processing' | 'unsupported';
 interface IProcessWebsite {
 	state: webStates;
 	off: boolean;

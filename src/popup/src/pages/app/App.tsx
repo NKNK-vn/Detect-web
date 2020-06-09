@@ -30,6 +30,10 @@ function App() {
 					setBgColor('bg-orange');
 					setSafeValue(t('unSafeWebsite'));
 					break;
+				case 'unsupported':
+					setBgColor('bg-dark');
+					setSafeValue(t('unsupported'));
+					break;
 				default:
 					setSafeValue(t('loadingSafe'));
 					setBgColor('bg-blue');
