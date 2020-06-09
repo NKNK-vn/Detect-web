@@ -61,20 +61,22 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         currentTab = tab;
         const domain = tab.url.domain();
         if (!webCaches[domain]?.state) {
-            updateWebImages();
-            console.log('<i> Detect new domain:', domain);
-            changeIconBaseOnState('processing');
-            webCaches[domain] = { sample: tab.url, off: false };
             if (tab.url.isURL()) {
+                updateWebImages();
+                console.log('<i> Detect new domain:', domain);
+                changeIconBaseOnState('processing');
+                webCaches[domain] = { sample: tab.url, off: false };
                 webCaches[domain].state = (await callApiVerifyURL(tab.url)) || 'processing';
+                console.log('<i> Server response value:', webCaches[domain].state);
             } else {
-                webCaches[domain].state = 'unsupported';
+                console.log('<i> Detect unsupported domain:', domain);
+                webCaches[domain] = { sample: tab.url, off: false, state: 'unsupported' };
             }
-            console.log('<i> Server response value:', webCaches[domain].state);
         }
         changeIconBaseOnState(webCaches[domain]?.state || 'processing');
-        updateWebImages();
-        // TODO: update all image
+        if (tab.url.isURL()) {
+            updateWebImages();
+        }
     }
 });
 
@@ -180,13 +182,15 @@ function callApiVerifyURL(url = ''): Promise<webStates | false> {
  * Hide all images on unsafe website if hide is enabled
  */
 function updateWebImages() {
-    if (hideImages && webCaches[currentTab.url.domain()]?.state !== 'safe') {
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.connect(tabs[0].id).postMessage('hideImages');
-        });
-    } else {
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.connect(tabs[0].id).postMessage('showImages');
-        });
-    }
+    try {
+        if (hideImages && webCaches[currentTab.url.domain()]?.state !== 'safe') {
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                chrome.tabs.connect(tabs[0].id)?.postMessage('hideImages');
+            });
+        } else {
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                chrome.tabs.connect(tabs[0].id)?.postMessage('showImages');
+            });
+        }
+    } catch (e) {}
 }
