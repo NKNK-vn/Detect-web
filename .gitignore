@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 yolov3-spp-optimal-mosaic-adver-512-rd_8526.weights
 process/
 obj/
 __pycache__
+=======
+node_modules
+>>>>>>> 4fd6255b22e785f028dd83efc2fe9d6089fc33b6
