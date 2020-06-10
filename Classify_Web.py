@@ -23,6 +23,10 @@ from vn_bayes import *
 import tkinter as tk
 from tkinter import messagebox
 
+# Init server
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
 ######################################################################################################
 
 # yolo def
@@ -561,11 +565,75 @@ def Get_Img(url, saved_dir_img):
     print("Crawling img succeeded!")
 
 # main
-
-
 if __name__ == "__main__":
+    app.run()
+#     output = 0
+#     url = str(input('URL: '))
+#     # if url[len(url)-1] != '/':  #url standardization
+#     #     url += '/'
+#     # if 'https://' not in url and 'http://' not in url:
+#     #     url = 'https://' + url
+#     url_name = url.replace("/", "").replace("https:", "").replace("http:", "")
+#     saved_dir_text = './process/Text' + url_name
+#     saved_dir_img = './process/Img' + url_name
+#     Get_Text(url, saved_dir_text)
+#     Get_Img(url, saved_dir_img)
+#     porn = 0
+#     saved_dir_img = saved_dir_img + "/*"
+#     cls = vn_Bayes()
+#     cls.load_model("train123.csv")
+#     CLS = en_Bayes()
+#     CLS.load_model("TextsProcess/en.NaiveBayes/train.csv")
+#     files = os.listdir(saved_dir_text)
+#     i = 0
+#     for file in glob.glob(saved_dir_img):
+#         imagePath = file
+#         im = Image.open(imagePath)
+#         if im.size[0] < 224 and im.size[1] < 224:
+#             continue
+#         else:
+#             A = []
+#             A = performDetect(imagePath)
+#             if (A == []):
+#                 continue
+#             else:
+#                 # print(imagePath)
+#                 porn += 1
+#     for file in files:
+#         # root = tk.Tk()
+#         # root.withdraw()
+#         fi = os.path.join(saved_dir_text, file)
+#         x = cls.classifier(fi)             # result text VN
+#         y = CLS.classifier(fi)             # result text Eng
+#     #     if x == 1:
+#     #         print("Web sex co noi dung tieng viet")
+#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung tieng Viet')
+#     #     if y == 1:
+#     #         print("Web sex co noi dung tieng anh")
+#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung tieng Anh')
+#     #     if x == 0 and y ==0:
+#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung binh thuong')
+#     # messagebox.showwarning('So anh khieu dam la: ', porn)
+#     # if x == 1:
+#     #     messagebox.showwarning('Thong bao', "Web sex co noi dung tieng Viet")
+#     # if y == 1:
+#     #     messagebox.showwarning('Thong bao','Web sex co noi dung tieng Anh')
+#     # messagebox.showwarning('So anh khieu dam la: ', porn)
+#     if (x == 1 or y == 1) and porn > 0:
+#         output = 1                # web porn
+#     else:
+#         output = 0                # web normal
+#     print(output)
+
+
+@app.route("/", methods=['GET'])
+def getValidateURL():
+    if 'url' in request.args:
+        url = str(request.args['url'])
+    else:
+        return "URL not found"
     output = 0
-    url = str(input('URL: '))
+    url = url
     # if url[len(url)-1] != '/':  #url standardization
     #     url += '/'
     # if 'https://' not in url and 'http://' not in url:
@@ -620,4 +688,5 @@ if __name__ == "__main__":
         output = 1                # web porn
     else:
         output = 0                # web normal
-    print(output)
+    return str(output)
+
