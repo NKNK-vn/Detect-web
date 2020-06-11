@@ -591,8 +591,10 @@ def validateURL(url):
     i = 0
     for file in glob.glob(saved_dir_img):
         imagePath = file
+        if imagePath.find(".svg") != -1 or imagePath.find(".gif") != -1:
+            continue
         im = Image.open(imagePath)
-        if im.size[0] < 224 and im.size[1] < 224:
+        if (im.size[0] < 224 and im.size[1] < 224):
             continue
         else:
             A = []
@@ -600,7 +602,7 @@ def validateURL(url):
             if (A == []):
                 continue
             else:
-                # print(imagePath)
+                print(imagePath)
                 porn += 1
     for file in files:
         # root = tk.Tk()
@@ -622,11 +624,12 @@ def validateURL(url):
     # if y == 1:
     #     messagebox.showwarning('Thong bao','Web sex co noi dung tieng Anh')
     # messagebox.showwarning('So anh khieu dam la: ', porn)
-    porn = 0
+    output = 0
     if (x == 1 or y == 1):
         output = output + 1              # web porn text
     if porn > 0:
         output = output + 2              # web porn picture
+    print("Output: ", output)
     return output  # 0 normal , 1 unsafe text, 2 unsafe images, 3 both
 
 
@@ -635,9 +638,10 @@ def processURL(url):
     domain = urlparse(url).netloc
     if domain in processedDict:
         return processedDict[domain]
-    if processing:
+    if processing == True:
         return False
     else:
+        processing = True
         processedDict[domain] = validateURL(url)
         processing = False
         return processedDict[domain]
@@ -652,15 +656,15 @@ def getValidateURL():
             url = str(request.args['url'])
         else:
             return "URL not found"
-    processed = processURL(url)
-    if processed == False:
-        return {
-            "status": -1
-        }
-    else:
-        return {
-            "status": processed
-        }
+    # processed = processURL(url)
+    # if processed == False:
+    #     return {
+    #         "status": -1
+    #     }
+    # else:
+    return {
+        "status": validateURL(url)
+    }
 
 # main
 if __name__ == "__main__":
