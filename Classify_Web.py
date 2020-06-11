@@ -1,4 +1,5 @@
 # for crawler
+from flask import Flask, request, jsonify
 import httplib2
 from bs4 import BeautifulSoup, SoupStrainer
 import urllib.request
@@ -23,8 +24,9 @@ from vn_bayes import *
 import tkinter as tk
 from tkinter import messagebox
 
+# Process
+from urllib.parse import urlparse
 # Init server
-from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 ######################################################################################################
@@ -79,7 +81,7 @@ class METADATA(Structure):
                 ("names", POINTER(c_char_p))]
 
 
-#lib = CDLL("/home/pjreddie/documents/darknet/libdarknet.so", RTLD_GLOBAL)
+# lib = CDLL("/home/pjreddie/documents/darknet/libdarknet.so", RTLD_GLOBAL)
 # lib = CDLL("libdarknet.so", RTLD_GLOBAL)
 hasGPU = True
 if os.name == "nt":
@@ -249,7 +251,7 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45, debug=False):
     """
     Performs the meat of the detection
     """
-    #pylint: disable= C0321
+    # pylint: disable= C0321
     im = load_image(image, 0, 0)
     if debug:
         print("Loaded image")
@@ -261,12 +263,12 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45, debug=False):
 
 
 def detect_image(net, meta, im, thresh=.5, hier_thresh=.5, nms=.45, debug=False):
-    #import cv2
+    # import cv2
     # custom_image_bgr = cv2.imread(image) # use: detect(,,imagePath,)
-    #custom_image = cv2.cvtColor(custom_image_bgr, cv2.COLOR_BGR2RGB)
-    #custom_image = cv2.resize(custom_image,(lib.network_width(net), lib.network_height(net)), interpolation = cv2.INTER_LINEAR)
-    #import scipy.misc
-    #custom_image = scipy.misc.imread(image)
+    # custom_image = cv2.cvtColor(custom_image_bgr, cv2.COLOR_BGR2RGB)
+    # custom_image = cv2.resize(custom_image,(lib.network_width(net), lib.network_height(net)), interpolation = cv2.INTER_LINEAR)
+    # import scipy.misc
+    # custom_image = scipy.misc.imread(image)
     # im, arr = array_to_image(custom_image)		# you should comment line below: free_image(im)
     num = c_int(0)
     if debug:
@@ -276,8 +278,8 @@ def detect_image(net, meta, im, thresh=.5, hier_thresh=.5, nms=.45, debug=False)
         print("Assigned pnum")
     predict_image(net, im)
     letter_box = 0
-    #predict_image_letterbox(net, im)
-    #letter_box = 1
+    # predict_image_letterbox(net, im)
+    # letter_box = 1
     if debug:
         print("did prediction")
     # dets = get_network_boxes(net, custom_image_bgr.shape[1], custom_image_bgr.shape[0], thresh, hier_thresh, None, 0, pnum, letter_box) # OpenCV
@@ -369,7 +371,8 @@ def performDetect(imagePath, thresh=0.5, configPath="v3medium/backup/yolov3-spp-
 
 
     When showImage is False, list of tuples like
-        ('obj_label', confidence, (bounding_box_x_px, bounding_box_y_px, bounding_box_width_px, bounding_box_height_px))
+        ('obj_label', confidence, (bounding_box_x_px, bounding_box_y_px,
+         bounding_box_width_px, bounding_box_height_px))
         The X and Y coordinates are from the center of the bounding box. Subtract half the width or height to get the lower corner.
 
     Otherwise, a dict with
@@ -564,76 +567,11 @@ def Get_Img(url, saved_dir_img):
             print("Cannot download: " + str(image_url))
     print("Crawling img succeeded!")
 
-# main
-if __name__ == "__main__":
-    app.run()
-#     output = 0
-#     url = str(input('URL: '))
-#     # if url[len(url)-1] != '/':  #url standardization
-#     #     url += '/'
-#     # if 'https://' not in url and 'http://' not in url:
-#     #     url = 'https://' + url
-#     url_name = url.replace("/", "").replace("https:", "").replace("http:", "")
-#     saved_dir_text = './process/Text' + url_name
-#     saved_dir_img = './process/Img' + url_name
-#     Get_Text(url, saved_dir_text)
-#     Get_Img(url, saved_dir_img)
-#     porn = 0
-#     saved_dir_img = saved_dir_img + "/*"
-#     cls = vn_Bayes()
-#     cls.load_model("train123.csv")
-#     CLS = en_Bayes()
-#     CLS.load_model("TextsProcess/en.NaiveBayes/train.csv")
-#     files = os.listdir(saved_dir_text)
-#     i = 0
-#     for file in glob.glob(saved_dir_img):
-#         imagePath = file
-#         im = Image.open(imagePath)
-#         if im.size[0] < 224 and im.size[1] < 224:
-#             continue
-#         else:
-#             A = []
-#             A = performDetect(imagePath)
-#             if (A == []):
-#                 continue
-#             else:
-#                 # print(imagePath)
-#                 porn += 1
-#     for file in files:
-#         # root = tk.Tk()
-#         # root.withdraw()
-#         fi = os.path.join(saved_dir_text, file)
-#         x = cls.classifier(fi)             # result text VN
-#         y = CLS.classifier(fi)             # result text Eng
-#     #     if x == 1:
-#     #         print("Web sex co noi dung tieng viet")
-#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung tieng Viet')
-#     #     if y == 1:
-#     #         print("Web sex co noi dung tieng anh")
-#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung tieng Anh')
-#     #     if x == 0 and y ==0:
-#     #         messagebox.showwarning('Thong bao', 'Web sex co noi dung binh thuong')
-#     # messagebox.showwarning('So anh khieu dam la: ', porn)
-#     # if x == 1:
-#     #     messagebox.showwarning('Thong bao', "Web sex co noi dung tieng Viet")
-#     # if y == 1:
-#     #     messagebox.showwarning('Thong bao','Web sex co noi dung tieng Anh')
-#     # messagebox.showwarning('So anh khieu dam la: ', porn)
-#     if (x == 1 or y == 1) and porn > 0:
-#         output = 1                # web porn
-#     else:
-#         output = 0                # web normal
-#     print(output)
 
+processing = False
+processedDict = {}
 
-@app.route("/", methods=['GET'])
-def getValidateURL():
-    if 'url' in request.args:
-        url = str(request.args['url'])
-    else:
-        return "URL not found"
-    output = 0
-    url = url
+def validateURL(url):
     # if url[len(url)-1] != '/':  #url standardization
     #     url += '/'
     # if 'https://' not in url and 'http://' not in url:
@@ -684,9 +622,46 @@ def getValidateURL():
     # if y == 1:
     #     messagebox.showwarning('Thong bao','Web sex co noi dung tieng Anh')
     # messagebox.showwarning('So anh khieu dam la: ', porn)
-    if (x == 1 or y == 1) and porn > 0:
-        output = 1                # web porn
-    else:
-        output = 0                # web normal
-    return str(output)
+    porn = 0
+    if (x == 1 or y == 1):
+        output = output + 1              # web porn text
+    if porn > 0:
+        output = output + 2              # web porn picture
+    return output  # 0 normal , 1 unsafe text, 2 unsafe images, 3 both
 
+
+def processURL(url):
+    global processing
+    domain = urlparse(url).netloc
+    if domain in processedDict:
+        return processedDict[domain]
+    if processing:
+        return False
+    else:
+        processedDict[domain] = validateURL(url)
+        processing = False
+        return processedDict[domain]
+
+
+@app.route("/", methods=['POST', "GET"])
+def getValidateURL():
+    if request.method == 'POST':
+        url = request.form['url']
+    else:
+        if 'url' in request.args:
+            url = str(request.args['url'])
+        else:
+            return "URL not found"
+    processed = processURL(url)
+    if processed == False:
+        return {
+            "status": -1
+        }
+    else:
+        return {
+            "status": processed
+        }
+
+# main
+if __name__ == "__main__":
+    app.run()
