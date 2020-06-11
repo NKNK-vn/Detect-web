@@ -1,4 +1,5 @@
 import './prototype';
+import request from 'request';
 // BEGIN OF DECLARE VARIABLE
 type webStates = 'safe' | 'unsafe' | 'critical' | 'processing' | 'unsupported';
 interface ICachedWebsite {
@@ -163,18 +164,29 @@ function changeIconBaseOnState(state: webStates | 'default') {
  * @param {function} cb Callback after done, will response from -1 to 1
  */
 function callApiVerifyURL(url = ''): Promise<webStates | false> {
-    // Fake calling
-    const fakeTimes = [100, 300, 599, 2139, 3000];
-    return new Promise((rs, rj) => {
+    return new Promise(async (rs, rj) => {
         if (typeof url !== 'string' || url.length < 3) {
             rs(false);
             return;
         }
-        setTimeout(() => {
-            let items: webStates[] = ['safe', 'unsafe', 'critical', 'processing'];
-            rs(items[Math.floor(Math.random() * items.length)]);
-            return;
-        }, fakeTimes[Math.floor(Math.random() * fakeTimes.length)]);
+        let status = await callServerVerifyAPI(url);
+        switch (status.status) {
+            case 0:
+                rs('safe');
+                break;
+            case 1:
+                rs('unsafe');
+                break;
+            case 2:
+                rs('unsafe');
+                break;
+            case 3:
+                rs('critical');
+                break;
+            default:
+                rs('processing');
+                break;
+        }
     });
 }
 
@@ -193,4 +205,26 @@ function updateWebImages() {
             });
         }
     } catch (e) {}
+}
+
+function callServerVerifyAPI(url: string): Promise<{ status: number }> {
+    return new Promise((rs, rj) => {
+        request(
+            'http://127.0.0.1:5000/',
+            {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: {
+                    url: url,
+                },
+            },
+            function (error: any, response: any, body: { status: number }) {
+                if (error) {
+                    return rs({ status: -1 });
+                } else {
+                    return rs(body);
+                }
+            },
+        );
+    });
 }
