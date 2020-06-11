@@ -334,7 +334,7 @@ metaMain = None
 altNames = None
 
 
-def performDetect(imagePath, thresh=0.5, configPath="v3medium/backup/yolov3-spp-optimal-mosaic-adver-512-rd.cfg", weightPath="v3medium/backup/yolov3-spp-optimal-mosaic-adver-512-rd_8526.weights", metaPath="v3medium/obj.data", showImage=True, makeImageOnly=False, initOnly=False):
+def performDetect(imagePath, thresh=0.8, configPath="v3medium/backup/yolov3-spp-optimal-mosaic-adver-512-rd.cfg", weightPath="v3medium/backup/yolov3-spp-optimal-mosaic-adver-512-rd_8526.weights", metaPath="v3medium/obj.data", showImage=True, makeImageOnly=False, initOnly=False):
     """
     Convenience function to handle the detection and returns of objects.
 
