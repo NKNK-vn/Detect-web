@@ -20,21 +20,21 @@ let loading = false;
  * Process all processing state
  */
 setInterval(async () => {
-    if (loading) {
-        return;
-    }
-    loading = true;
-    for (let key of Object.keys(webCaches)) {
-        if (webCaches[key]?.state === 'processing') {
-            webCaches[key].state = (await callApiVerifyURL(webCaches[key].sample)) || 'processing';
-            console.log('<i> Recall server for:', key, ' - Result:', webCaches[key].state);
-            if (currentTab.url.domain() === webCaches[key].sample.domain()) {
-                changeIconBaseOnState(webCaches[key].state || 'processing');
-                updateWebImages();
-            }
-        }
-    }
-    loading = false;
+    // if (loading) {
+    //     return;
+    // }
+    // loading = true;
+    // for (let key of Object.keys(webCaches)) {
+    //     if (webCaches[key]?.state === 'processing') {
+    //         webCaches[key].state = (await callApiVerifyURL(webCaches[key].sample)) || 'processing';
+    //         console.log('<i> Recall server for:', key, ' - Result:', webCaches[key].state);
+    //         if (currentTab.url.domain() === webCaches[key].sample.domain()) {
+    //             changeIconBaseOnState(webCaches[key].state || 'processing');
+    //             updateWebImages();
+    //         }
+    //     }
+    // }
+    // loading = false;
     localStorage.setItem(LOCAL_CACHED_KEY, JSON.stringify(webCaches));
     localStorage.setItem(LOCAL_WEB_HIDE_KEY, JSON.stringify(hideImages));
 }, 1000);
@@ -164,29 +164,31 @@ function changeIconBaseOnState(state: webStates | 'default') {
  * @param {function} cb Callback after done, will response from -1 to 1
  */
 function callApiVerifyURL(url = ''): Promise<webStates | false> {
-    return new Promise(async (rs, rj) => {
+    return new Promise((rs, rj) => {
         if (typeof url !== 'string' || url.length < 3) {
             rs(false);
             return;
         }
-        let status = await callServerVerifyAPI(url);
-        switch (status.status) {
-            case 0:
-                rs('safe');
-                break;
-            case 1:
-                rs('unsafe');
-                break;
-            case 2:
-                rs('unsafe');
-                break;
-            case 3:
-                rs('critical');
-                break;
-            default:
-                rs('processing');
-                break;
-        }
+        callServerVerifyAPI(url).then((data) => {
+            console.log(data);
+            switch (data.status) {
+                case 0:
+                    rs('safe');
+                    break;
+                case 1:
+                    rs('unsafe');
+                    break;
+                case 2:
+                    rs('unsafe');
+                    break;
+                case 3:
+                    rs('critical');
+                    break;
+                default:
+                    rs('processing');
+                    break;
+            }
+        });
     });
 }
 
@@ -210,19 +212,17 @@ function updateWebImages() {
 function callServerVerifyAPI(url: string): Promise<{ status: number }> {
     return new Promise((rs, rj) => {
         request(
-            'http://127.0.0.1:5000/',
+            `http://localhost:5000/?url=${url}`,
             {
-                method: 'POST',
-                headers: { Accept: 'application/json' },
-                body: {
-                    url: url,
-                },
+                method: 'GET',
             },
-            function (error: any, response: any, body: { status: number }) {
+            function (error: any, response: any, body: string) {
                 if (error) {
-                    return rs({ status: -1 });
+                    console.log(error);
+                    rs({ status: -1 });
                 } else {
-                    return rs(body);
+                    console.log('Server response:', body);
+                    rs(JSON.parse(body));
                 }
             },
         );
