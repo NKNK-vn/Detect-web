@@ -517,7 +517,7 @@ def Get_Text(url, saved_dir_text):
 
     file_content = ""
     # ['h1','h2','h3','h4','div','p'])        #find all text and headlines
-    content = soup.find_all('p')
+    content = soup.find_all(['h1','h2','h3','h4','div','p', 'a'])
 
     if len(content) == 0:
         print("There is nothing to crawl")
@@ -550,10 +550,17 @@ def Get_Img(url, saved_dir_img):
     images = browser.find_elements_by_tag_name('img')
     for image in images:
         image_url = image.get_attribute('src')
+        img_url = str(image_url)
+        if img_url.find(".svg") != -1 or img_url.find(".gif") != -1:
+            continue
         print(image_url)
         try:
             if not validators.url(image_url):
                 image_url = url + image_url.split('//')[0]
+            Imgsize = Image.open(urllib.request.urlopen(image_url))
+            width, height = Imgsize.size
+            if width < 224 and height < 224:
+                continue
             r = requests.get(image_url, stream=True, headers=headers)
             print("Status code: " + str(r.status_code))
             if r.status_code == 200:
