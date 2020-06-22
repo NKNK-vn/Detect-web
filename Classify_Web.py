@@ -24,6 +24,9 @@ from vn_bayes import *
 import tkinter as tk
 from tkinter import messagebox
 
+from requests import get
+from io import BytesIO
+
 # Process
 from urllib.parse import urlparse
 # Init server
@@ -551,14 +554,22 @@ def Get_Img(url, saved_dir_img):
     for image in images:
         image_url = image.get_attribute('src')
         img_url = str(image_url)
-        if img_url.find(".svg") != -1 or img_url.find(".gif") != -1:
+        if img_url.find("svg") != -1 or img_url.find("gif") != -1:
             continue
-        print(image_url)
+        # if not validators.url(img_url):
+        #     img_url = url + img_url.split('//')[0]
+        # image_raw = get(img_url)
+        # image = Image.open(BytesIO(image_raw.content))
+        # width, height = image.size
+        # if width < 224 and height < 224:
+        #     continue
+        print(img_url)
         try:
             if not validators.url(image_url):
                 image_url = url + image_url.split('//')[0]
-            Imgsize = Image.open(urllib.request.urlopen(image_url))
-            width, height = Imgsize.size
+            image_raw = get(image_url)
+            image = Image.open(BytesIO(image_raw.content))
+            width, height = image.size
             if width < 224 and height < 224:
                 continue
             r = requests.get(image_url, stream=True, headers=headers)
