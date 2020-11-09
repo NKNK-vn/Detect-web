@@ -622,7 +622,7 @@ def validateURL(url):
             else:
                 print(imagePath)
                 porn += 1
-    x = 0 #default
+    x = 0 #default value text_check
     for file in files:
         # root = tk.Tk()
         # root.withdraw()
