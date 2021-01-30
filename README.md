@@ -25,4 +25,5 @@ Run:
 		OPENMP=1
 		LIBSO=1
 	run make
+	download Model and copy to .../v3medium/backup folder: https://drive.google.com/file/d/11GXiOKokx3bCNyK0YOrurNrezDXrAdeF/view?usp=sharing
 	Run file Classify_Web.py, input URL	
