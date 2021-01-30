@@ -570,7 +570,7 @@ def Get_Img(url, saved_dir_img):
             image_raw = get(image_url)
             image = Image.open(BytesIO(image_raw.content))
             width, height = image.size
-            if width < 224 and height < 224:
+            if width < 200 and height < 200:
                 continue
             r = requests.get(image_url, stream=True, headers=headers)
             print("Status code: " + str(r.status_code))
@@ -612,7 +612,7 @@ def validateURL(url):
         if imagePath.find(".svg") != -1 or imagePath.find(".gif") != -1:
             continue
         im = Image.open(imagePath)
-        if (im.size[0] < 224 and im.size[1] < 224):
+        if (im.size[0] < 200 and im.size[1] < 200):
             continue
         else:
             A = []
@@ -651,6 +651,8 @@ def validateURL(url):
     if porn > 0:
         output = output + 2              # web porn picture
     print("Output: ", output)
+    print("output_text_vn", x)
+    print("output_text_eng", y)
     return output  # 0 normal , 1 unsafe text, 2 unsafe images, 3 both
 
 
